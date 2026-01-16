@@ -16,23 +16,48 @@ html, body {
   font-family: 'Cairo', sans-serif;
 }
 
-/* زر البداية */
-#startBtn {
+/* شاشة كلمة السر */
+#lockScreen {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 48px;
-  padding: 25px 55px;
-  background: #ffb6c1;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  z-index: 10;
-  font-family: 'Cairo', sans-serif;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-/* الحاوية */
+#lockScreen h1 {
+  font-size: 48px;
+  color: #ff69b4;
+}
+
+#hint {
+  margin-top: 10px;
+  font-size: 28px;
+  color: #ff9acb;
+}
+
+#passwordInput {
+  margin-top: 25px;
+  font-size: 28px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: 2px solid #ffb6c1;
+  text-align: center;
+}
+
+#enterBtn {
+  margin-top: 20px;
+  font-size: 28px;
+  padding: 12px 30px;
+  background: #ffb6c1;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* الرسالة */
 #message {
   position: absolute;
   top: 50%;
@@ -42,14 +67,12 @@ html, body {
   display: none;
 }
 
-/* الاسم */
 #name {
   font-size: 82px;
   font-weight: 800;
   color: #ff2d55;
 }
 
-/* الجملة */
 #text {
   margin-top: 25px;
   font-size: 54px;
@@ -60,7 +83,7 @@ html, body {
 /* الإيموجي */
 .floating {
   position: absolute;
-  font-size: 92px;
+  font-size: 88px;
   animation: floatUp 5s linear forwards;
 }
 
@@ -73,46 +96,45 @@ html, body {
 
 <body>
 
-<button id="startBtn">اضغطي هنا 💗</button>
+<!-- شاشة كلمة السر -->
+<div id="lockScreen">
+  <h1>حطي كلمة السر يا قلبي 💗</h1>
+  <div id="hint">تلميح: أكلتك المفضلة 😉</div>
+  <input id="passwordInput" type="password" placeholder="كلمة السر">
+  <button id="enterBtn">دخول</button>
+</div>
 
+<!-- الرسالة -->
 <div id="message">
   <div id="name">رارا 🫂</div>
   <div id="text">يؤبرني اللي عم يدرس 🫶🏻</div>
 </div>
 
 <script>
-const btn = document.getElementById("startBtn");
-const msg = document.getElementById("message");
-const nameEl = document.getElementById("name");
-const textEl = document.getElementById("text");
+const enterBtn = document.getElementById("enterBtn");
+const input = document.getElementById("passwordInput");
+const lockScreen = document.getElementById("lockScreen");
+const message = document.getElementById("message");
 
-btn.onclick = () => {
-  btn.style.display = "none";
-  msg.style.display = "block";
+const emojis = ["🫂","😍","❤️","🫶🏻","🤍","🩷","💐","🪷","🪻"];
 
-  // قلوب حمراء من الاسم
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "floating";
-    heart.innerText = "❤️";
-    const rect = nameEl.getBoundingClientRect();
-    heart.style.left = rect.left + rect.width / 2 + "px";
-    heart.style.top = rect.top + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-  }, 350);
+enterBtn.onclick = () => {
+  if (input.value === "بيتزا") {
+    lockScreen.style.display = "none";
+    message.style.display = "block";
 
-  // قلوب بيضاء من الجملة
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "floating";
-    heart.innerText = "🤍";
-    const rect = textEl.getBoundingClientRect();
-    heart.style.left = rect.left + rect.width / 2 + "px";
-    heart.style.top = rect.top + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-  }, 450);
+    setInterval(() => {
+      const el = document.createElement("div");
+      el.className = "floating";
+      el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * window.innerWidth + "px";
+      el.style.top = "85%";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 5000);
+    }, 200);
+  } else {
+    alert("كلمة السر غلط 😅");
+  }
 };
 </script>
 
