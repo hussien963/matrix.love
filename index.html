@@ -2,7 +2,10 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Love Message</title>
+<title>Love</title>
+
+<!-- خط Cairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
 html, body {
@@ -10,7 +13,7 @@ html, body {
   padding: 0;
   background: white;
   overflow: hidden;
-  font-family: Arial, sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 
 /* زر البداية */
@@ -19,32 +22,45 @@ html, body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 44px;
-  padding: 25px 50px;
+  font-size: 48px;
+  padding: 25px 55px;
   background: #ffb6c1;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   cursor: pointer;
   z-index: 10;
+  font-family: 'Cairo', sans-serif;
 }
 
-/* النص */
+/* الحاوية */
 #message {
   position: absolute;
-  top: 35%;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 52px;
-  font-weight: bold;
-  color: #ff69b4;
   display: none;
-  z-index: 5;
+}
+
+/* الاسم */
+#name {
+  font-size: 82px;
+  font-weight: 800;
+  color: #ff2d55;
+}
+
+/* الجملة */
+#text {
+  margin-top: 25px;
+  font-size: 54px;
+  font-weight: 600;
+  color: #ff69b4;
 }
 
 /* الإيموجي */
 .floating {
   position: absolute;
-  font-size: 56px;
+  font-size: 92px;
   animation: floatUp 5s linear forwards;
 }
 
@@ -60,33 +76,43 @@ html, body {
 <button id="startBtn">اضغطي هنا 💗</button>
 
 <div id="message">
-  رارا 🫂
-  يؤبرني اللي عم يدرس 🫶🏻
+  <div id="name">رارا 🫂</div>
+  <div id="text">يؤبرني اللي عم يدرس 🫶🏻</div>
 </div>
-
-<audio id="voice" autoplay loop>
-  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Komiku/Its_time_for_adventure/Komiku_-_08_-_Level_Up.mp3">
-</audio>
 
 <script>
 const btn = document.getElementById("startBtn");
 const msg = document.getElementById("message");
-
-const emojis = ["🫂","😍","❤️","🫶🏻","🤍","🩷","💐","🪷","🪻"];
+const nameEl = document.getElementById("name");
+const textEl = document.getElementById("text");
 
 btn.onclick = () => {
   btn.style.display = "none";
   msg.style.display = "block";
 
+  // قلوب حمراء من الاسم
   setInterval(() => {
-    const el = document.createElement("div");
-    el.className = "floating";
-    el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-    el.style.left = Math.random() * window.innerWidth + "px";
-    el.style.top = "85%";
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 5000);
-  }, 180);
+    const heart = document.createElement("div");
+    heart.className = "floating";
+    heart.innerText = "❤️";
+    const rect = nameEl.getBoundingClientRect();
+    heart.style.left = rect.left + rect.width / 2 + "px";
+    heart.style.top = rect.top + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }, 350);
+
+  // قلوب بيضاء من الجملة
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "floating";
+    heart.innerText = "🤍";
+    const rect = textEl.getBoundingClientRect();
+    heart.style.left = rect.left + rect.width / 2 + "px";
+    heart.style.top = rect.top + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }, 450);
 };
 </script>
 
