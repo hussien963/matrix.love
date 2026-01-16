@@ -16,10 +16,25 @@ html, body {
   font-family: 'Cairo', sans-serif;
 }
 
+/* خلفية ثابتة */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-item {
+  position: absolute;
+  font-size: 48px;
+  opacity: 0.25;
+}
+
 /* شاشة كلمة السر */
 #lockScreen {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,19 +47,20 @@ html, body {
   color: #ff69b4;
 }
 
-#hint {
-  margin-top: 10px;
-  font-size: 28px;
-  color: #ff9acb;
-}
-
 #passwordInput {
   margin-top: 25px;
   font-size: 28px;
-  padding: 10px 20px;
+  padding: 12px 22px;
   border-radius: 15px;
   border: 2px solid #ffb6c1;
   text-align: center;
+}
+
+#hint {
+  margin-top: 12px;
+  font-size: 26px;
+  color: #ff9acb;
+  display: none;
 }
 
 #enterBtn {
@@ -57,30 +73,65 @@ html, body {
   cursor: pointer;
 }
 
-/* الرسالة */
-#message {
+/* شاشة الرسالة */
+#messageScreen {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  inset: 0;
+  z-index: 1;
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-#name {
-  font-size: 82px;
+#line1 {
+  font-size: 78px;
   font-weight: 800;
   color: #ff2d55;
 }
 
-#text {
-  margin-top: 25px;
-  font-size: 54px;
+#line2 {
+  margin-top: 20px;
+  font-size: 52px;
   font-weight: 600;
   color: #ff69b4;
 }
 
-/* الإيموجي */
+#nextBtn {
+  margin-top: 45px;
+  font-size: 32px;
+  padding: 15px 40px;
+  background: #ffc0d9;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* الشاشة الأخيرة */
+#finalScreen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#finalScreen h1 {
+  font-size: 64px;
+  color: #ff2d55;
+}
+
+#finalScreen p {
+  margin-top: 25px;
+  font-size: 48px;
+  color: #ff69b4;
+}
+
+/* الإيموجي الطايرة */
 .floating {
   position: absolute;
   font-size: 88px;
@@ -96,32 +147,57 @@ html, body {
 
 <body>
 
+<!-- خلفية ثابتة -->
+<div id="bg">
+  <div class="bg-item" style="top:10%; left:5%">🦋</div>
+  <div class="bg-item" style="top:20%; right:8%">🤍</div>
+  <div class="bg-item" style="bottom:15%; left:10%">🩷</div>
+  <div class="bg-item" style="bottom:20%; right:12%">🦋</div>
+  <div class="bg-item" style="top:50%; left:45%">🤍</div>
+</div>
+
 <!-- شاشة كلمة السر -->
 <div id="lockScreen">
   <h1>حطي كلمة السر يا قلبي 💗</h1>
-  <div id="hint">تلميح: أكلتك المفضلة 😉</div>
   <input id="passwordInput" type="password" placeholder="كلمة السر">
+  <div id="hint">تلميح: أكلتك المفضلة 😉</div>
   <button id="enterBtn">دخول</button>
 </div>
 
-<!-- الرسالة -->
-<div id="message">
-  <div id="name">رارا 🫂</div>
-  <div id="text">يؤبرني اللي عم يدرس 🫶🏻</div>
+<!-- شاشة الرسالة -->
+<div id="messageScreen">
+  <div id="line1">راراااااا</div>
+  <div id="line2">🫂🫶🏻 يؤبرني اللي عم يدرس</div>
+  <button id="nextBtn">اكبسي هون يا قلبي 💗</button>
+</div>
+
+<!-- الشاشة الأخيرة -->
+<div id="finalScreen">
+  <h1>يلا ما خلصتي دراسة</h1>
+  <p>اشتقتلك 😉</p>
 </div>
 
 <script>
-const enterBtn = document.getElementById("enterBtn");
 const input = document.getElementById("passwordInput");
+const hint = document.getElementById("hint");
+const enterBtn = document.getElementById("enterBtn");
+
 const lockScreen = document.getElementById("lockScreen");
-const message = document.getElementById("message");
+const messageScreen = document.getElementById("messageScreen");
+const finalScreen = document.getElementById("finalScreen");
+const nextBtn = document.getElementById("nextBtn");
 
 const emojis = ["🫂","😍","❤️","🫶🏻","🤍","🩷","💐","🪷","🪻"];
+
+// إظهار التلميح عند التركيز
+input.addEventListener("focus", () => {
+  hint.style.display = "block";
+});
 
 enterBtn.onclick = () => {
   if (input.value === "بيتزا") {
     lockScreen.style.display = "none";
-    message.style.display = "block";
+    messageScreen.style.display = "flex";
 
     setInterval(() => {
       const el = document.createElement("div");
@@ -131,10 +207,15 @@ enterBtn.onclick = () => {
       el.style.top = "85%";
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 5000);
-    }, 200);
+    }, 220);
   } else {
     alert("كلمة السر غلط 😅");
   }
+};
+
+nextBtn.onclick = () => {
+  messageScreen.style.display = "none";
+  finalScreen.style.display = "flex";
 };
 </script>
 
