@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You</title>
-
+<title>Love Surprise</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- INTRO -->
+<!-- Intro Screen -->
 <section id="intro" class="screen active">
   <div class="center-box">
     <h1 class="glow-title">مرحباً بكِ في تجربة مختلفة</h1>
@@ -19,10 +18,9 @@
   </div>
 </section>
 
-<!-- PUZZLE -->
+<!-- Puzzle Screen -->
 <section id="puzzle" class="screen">
   <div class="center-box">
-
     <!-- المرحلة 1 -->
     <div id="stage1">
       <h2>شو نسبة حبك لحسين؟ 😏</h2>
@@ -33,16 +31,15 @@
 
     <!-- المرحلة 2 -->
     <div id="stage2" style="display:none;">
-      <h2>حلّي السودوكو البسيطة 🧠</h2>
+      <h2>حلّي السودوكو السهلة 🧠</h2>
       <div id="sudoku"></div>
       <button onclick="checkSudoku()">تحقق</button>
       <p id="sudokuError" class="error"></p>
     </div>
-
   </div>
 </section>
 
-<!-- FINAL -->
+<!-- Final Screen -->
 <section id="final" class="screen">
   <div id="heart3d"></div>
   <div class="center-box final-box">
