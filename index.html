@@ -1,223 +1,57 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Love</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
 
-<!-- خط Cairo -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap" rel="stylesheet">
-
-<style>
-html, body {
-  margin: 0;
-  padding: 0;
-  background: white;
-  overflow: hidden;
-  font-family: 'Cairo', sans-serif;
-}
-
-/* خلفية ثابتة */
-#bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.bg-item {
-  position: absolute;
-  font-size: 48px;
-  opacity: 0.25;
-}
-
-/* شاشة كلمة السر */
-#lockScreen {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-#lockScreen h1 {
-  font-size: 48px;
-  color: #ff69b4;
-}
-
-#passwordInput {
-  margin-top: 25px;
-  font-size: 28px;
-  padding: 12px 22px;
-  border-radius: 15px;
-  border: 2px solid #ffb6c1;
-  text-align: center;
-}
-
-#hint {
-  margin-top: 12px;
-  font-size: 26px;
-  color: #ff9acb;
-  display: none;
-}
-
-#enterBtn {
-  margin-top: 20px;
-  font-size: 28px;
-  padding: 12px 30px;
-  background: #ffb6c1;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-/* شاشة الرسالة */
-#messageScreen {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-#line1 {
-  font-size: 78px;
-  font-weight: 800;
-  color: #ff2d55;
-}
-
-#line2 {
-  margin-top: 20px;
-  font-size: 52px;
-  font-weight: 600;
-  color: #ff69b4;
-}
-
-#nextBtn {
-  margin-top: 45px;
-  font-size: 32px;
-  padding: 15px 40px;
-  background: #ffc0d9;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-/* الشاشة الأخيرة */
-#finalScreen {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-#finalScreen h1 {
-  font-size: 64px;
-  color: #ff2d55;
-}
-
-#finalScreen p {
-  margin-top: 25px;
-  font-size: 48px;
-  color: #ff69b4;
-}
-
-/* الإيموجي الطايرة */
-.floating {
-  position: absolute;
-  font-size: 88px;
-  animation: floatUp 5s linear forwards;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-700px); opacity: 0; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- خلفية ثابتة -->
-<div id="bg">
-  <div class="bg-item" style="top:10%; left:5%">🦋</div>
-  <div class="bg-item" style="top:20%; right:8%">🤍</div>
-  <div class="bg-item" style="bottom:15%; left:10%">🩷</div>
-  <div class="bg-item" style="bottom:20%; right:12%">🦋</div>
-  <div class="bg-item" style="top:50%; left:45%">🤍</div>
-</div>
+<!-- INTRO -->
+<section id="intro" class="screen active">
+  <div class="center-box">
+    <h1 class="glow-title">مرحباً بكِ في تجربة مختلفة</h1>
+    <button id="startBtn" class="neon-btn">ابدئي الرحلة</button>
+  </div>
+</section>
 
-<!-- شاشة كلمة السر -->
-<div id="lockScreen">
-  <h1>حطي كلمة السر يا قلبي 💗</h1>
-  <input id="passwordInput" type="password" placeholder="كلمة السر">
-  <div id="hint">تلميح: أكلتك المفضلة 😉</div>
-  <button id="enterBtn">دخول</button>
-</div>
+<!-- PUZZLE -->
+<section id="puzzle" class="screen">
+  <div class="center-box">
 
-<!-- شاشة الرسالة -->
-<div id="messageScreen">
-  <div id="line1">راراااااا</div>
-  <div id="line2">🫂🫶🏻 يؤبرني اللي عم يدرس</div>
-  <button id="nextBtn">اكبسي هون يا قلبي 💗</button>
-</div>
+    <!-- المرحلة 1 -->
+    <div id="stage1">
+      <h2>شو نسبة حبك لحسين؟ 😏</h2>
+      <input type="number" id="loveInput" placeholder="اكتبي النسبة %" />
+      <button onclick="checkLove()">تحقق</button>
+      <p id="loveError" class="error"></p>
+    </div>
 
-<!-- الشاشة الأخيرة -->
-<div id="finalScreen">
-  <h1>يلا ما خلصتي دراسة</h1>
-  <p>اشتقتلك 😉</p>
-</div>
+    <!-- المرحلة 2 -->
+    <div id="stage2" style="display:none;">
+      <h2>حلّي السودوكو البسيطة 🧠</h2>
+      <div id="sudoku"></div>
+      <button onclick="checkSudoku()">تحقق</button>
+      <p id="sudokuError" class="error"></p>
+    </div>
 
-<script>
-const input = document.getElementById("passwordInput");
-const hint = document.getElementById("hint");
-const enterBtn = document.getElementById("enterBtn");
+  </div>
+</section>
 
-const lockScreen = document.getElementById("lockScreen");
-const messageScreen = document.getElementById("messageScreen");
-const finalScreen = document.getElementById("finalScreen");
-const nextBtn = document.getElementById("nextBtn");
+<!-- FINAL -->
+<section id="final" class="screen">
+  <div id="heart3d"></div>
+  <div class="center-box final-box">
+    <h1 id="poem"></h1>
+    <div id="counter"></div>
+    <button id="revealBtn" class="neon-btn">Reveal 💜</button>
+  </div>
+</section>
 
-const emojis = ["🫂","😍","❤️","🫶🏻","🤍","🩷","💐","🪷","🪻"];
-
-// إظهار التلميح عند التركيز
-input.addEventListener("focus", () => {
-  hint.style.display = "block";
-});
-
-enterBtn.onclick = () => {
-  if (input.value === "بيتزا") {
-    lockScreen.style.display = "none";
-    messageScreen.style.display = "flex";
-
-    setInterval(() => {
-      const el = document.createElement("div");
-      el.className = "floating";
-      el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-      el.style.left = Math.random() * window.innerWidth + "px";
-      el.style.top = "85%";
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 5000);
-    }, 220);
-  } else {
-    alert("كلمة السر غلط 😅");
-  }
-};
-
-nextBtn.onclick = () => {
-  messageScreen.style.display = "none";
-  finalScreen.style.display = "flex";
-};
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
