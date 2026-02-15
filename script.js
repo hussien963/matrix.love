@@ -19,22 +19,27 @@ function checkLove(){
   }
 }
 
-/* سودوكو 4x4 بسيطة */
-const solution = [
-  [1,2,3,4],
-  [3,4,1,2],
-  [2,1,4,3],
-  [4,3,2,1]
+/* سودوكو 9x9 سهلة */
+const easySudoku = [
+  [5,3,0,0,7,0,0,0,0],
+  [6,0,0,1,9,5,0,0,0],
+  [0,9,8,0,0,0,0,6,0],
+  [8,0,0,0,6,0,0,0,3],
+  [4,0,0,8,0,3,0,0,1],
+  [7,0,0,0,2,0,0,0,6],
+  [0,6,0,0,0,0,2,8,0],
+  [0,0,0,4,1,9,0,0,5],
+  [0,0,0,0,8,0,0,7,9]
 ];
 
 function generateSudoku(){
   const grid = document.getElementById("sudoku");
   grid.innerHTML="";
-  for(let r=0;r<4;r++){
-    for(let c=0;c<4;c++){
+  for(let r=0;r<9;r++){
+    for(let c=0;c<9;c++){
       const input=document.createElement("input");
-      if((r+c)%2===0){
-        input.value=solution[r][c];
+      if(easySudoku[r][c]!==0){
+        input.value=easySudoku[r][c];
         input.disabled=true;
       }
       grid.appendChild(input);
@@ -44,32 +49,37 @@ function generateSudoku(){
 
 function checkSudoku(){
   const inputs=document.querySelectorAll("#sudoku input");
+  let correct=true;
   let i=0;
-  for(let r=0;r<4;r++){
-    for(let c=0;c<4;c++){
-      if(!inputs[i].disabled){
-        if(parseInt(inputs[i].value)!==solution[r][c]){
-          document.getElementById("sudokuError").innerText="في خطأ 😏";
-          return;
+  for(let r=0;r<9;r++){
+    for(let c=0;c<9;c++){
+      const val = inputs[i].value;
+      if(easySudoku[r][c]===0){
+        if(val==="" || isNaN(val) || val<1 || val>9){
+          correct=false;
         }
       }
       i++;
     }
   }
-  puzzle.classList.remove("active");
-  finalScreen.classList.add("active");
-  startFinal();
+  if(correct){
+    puzzle.classList.remove("active");
+    finalScreen.classList.add("active");
+    startFinal();
+  } else {
+    document.getElementById("sudokuError").innerText="في خطأ 😏";
+  }
 }
 
 /* الصفحة الثالثة */
 function startFinal(){
 
-  // كتابة الشعر تدريجياً
   const text = `رجف الفؤادُ امام حسنك مثلما
 رجفت بكف الثاملين كؤوسُ
 
 عيناك قوس لا اطيق سهامه
 كفي فدرعي من سهامك يهزم`;
+
   const poem = document.getElementById("poem");
   let i=0;
   const typing=setInterval(()=>{
