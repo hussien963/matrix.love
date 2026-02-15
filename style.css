@@ -2,8 +2,9 @@ body {
   margin:0;
   font-family:'Cairo', sans-serif;
   background: radial-gradient(circle at top, #1a0033, #0d001a);
-  color:white;
+  color:#f0e6ff;
   overflow:hidden;
+  text-shadow: 0 0 4px #ff66ff;
 }
 
 .screen {
@@ -24,12 +25,12 @@ body {
   padding:40px;
   border-radius:20px;
   backdrop-filter:blur(15px);
-  box-shadow:0 0 40px rgba(128,0,255,0.5);
+  box-shadow:0 0 40px rgba(180,0,255,0.5);
 }
 
 .glow-title {
   font-size:40px;
-  text-shadow:0 0 20px #b366ff;
+  text-shadow:0 0 20px #ff66ff, 0 0 40px #b366ff;
 }
 
 .neon-btn {
@@ -41,7 +42,12 @@ body {
   background:#6a00ff;
   color:white;
   cursor:pointer;
-  box-shadow:0 0 20px #a64dff;
+  box-shadow:0 0 20px #ff66ff;
+  transition:0.3s;
+}
+
+.neon-btn:hover {
+  box-shadow:0 0 30px #ff66ff, 0 0 50px #b366ff;
 }
 
 input {
@@ -50,6 +56,8 @@ input {
   border-radius:10px;
   border:none;
   text-align:center;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
 }
 
 .error {
@@ -57,20 +65,28 @@ input {
   margin-top:10px;
 }
 
+/* Sudoku 9x9 */
 #sudoku {
   display:grid;
-  grid-template-columns:repeat(4,50px);
-  gap:5px;
+  grid-template-columns:repeat(9,40px);
+  grid-template-rows:repeat(9,40px);
+  gap:3px;
   justify-content:center;
   margin:20px 0;
 }
 
 #sudoku input {
-  width:50px;
-  height:50px;
-  font-size:20px;
+  width:40px;
+  height:40px;
+  font-size:18px;
+  text-align:center;
+  border-radius:5px;
+  border:1px solid #a64dff;
+  background:rgba(255,255,255,0.05);
+  color:#fff;
 }
 
+/* Final */
 .final-box h1 {
   white-space:pre-line;
   font-size:28px;
@@ -95,7 +111,7 @@ input {
   position:absolute;
   width:20px;
   height:20px;
-  background:#a64dff;
+  background:#ff66ff;
   transform:rotate(45deg);
   animation:float 10s linear infinite;
 }
@@ -106,7 +122,7 @@ input {
   position:absolute;
   width:20px;
   height:20px;
-  background:#a64dff;
+  background:#ff66ff;
   border-radius:50%;
 }
 
