@@ -1,0 +1,119 @@
+body {
+  margin:0;
+  font-family:'Cairo', sans-serif;
+  background: radial-gradient(circle at top, #1a0033, #0d001a);
+  color:white;
+  overflow:hidden;
+}
+
+.screen {
+  position:absolute;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.screen.active {
+  display:flex;
+}
+
+.center-box {
+  background:rgba(255,255,255,0.05);
+  padding:40px;
+  border-radius:20px;
+  backdrop-filter:blur(15px);
+  box-shadow:0 0 40px rgba(128,0,255,0.5);
+}
+
+.glow-title {
+  font-size:40px;
+  text-shadow:0 0 20px #b366ff;
+}
+
+.neon-btn {
+  margin-top:20px;
+  padding:12px 30px;
+  font-size:20px;
+  border:none;
+  border-radius:30px;
+  background:#6a00ff;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 20px #a64dff;
+}
+
+input {
+  padding:10px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+  text-align:center;
+}
+
+.error {
+  color:#ff4da6;
+  margin-top:10px;
+}
+
+#sudoku {
+  display:grid;
+  grid-template-columns:repeat(4,50px);
+  gap:5px;
+  justify-content:center;
+  margin:20px 0;
+}
+
+#sudoku input {
+  width:50px;
+  height:50px;
+  font-size:20px;
+}
+
+.final-box h1 {
+  white-space:pre-line;
+  font-size:28px;
+  line-height:1.8;
+}
+
+#counter {
+  margin-top:20px;
+  font-size:22px;
+  color:#d9b3ff;
+}
+
+/* قلوب 3D */
+#heart3d {
+  position:absolute;
+  inset:0;
+  perspective:800px;
+  overflow:hidden;
+}
+
+.heart {
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:#a64dff;
+  transform:rotate(45deg);
+  animation:float 10s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content:'';
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:#a64dff;
+  border-radius:50%;
+}
+
+.heart::before { top:-10px; left:0; }
+.heart::after { left:-10px; top:0; }
+
+@keyframes float {
+  from { transform:translateY(100vh) rotate(45deg) rotateX(0deg); opacity:1; }
+  to { transform:translateY(-10vh) rotate(45deg) rotateX(360deg); opacity:0; }
+}
