@@ -1,45 +1,66 @@
 window.onload=function(){
 
-/* تبديل الصفحات */
-window.nextPage=function(id){
+window.goTo=function(num){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+  document.getElementById("page"+num).classList.add("active");
+}
 
-  if(id==="countdown"){
-    startCountdown();
+window.checkLove=function(){
+  let val=document.getElementById("loveInput").value;
+  let msg=document.getElementById("loveMsg");
+
+  if(val==99 || val==100){
+    msg.innerHTML="صح 😍";
+    setTimeout(()=>goTo(3),800);
+  }else{
+    msg.innerHTML="فكري مرة تانية 🤨";
   }
 }
 
-/* عد تنازلي */
+/* لعبة ترتيب بدون drag (مناسبة للموبايل) */
+let sentence="I LOVE HUSSIEN";
+let container=document.getElementById("letters");
+let shuffled=sentence.split("").sort(()=>0.5-Math.random());
+let selected=[];
+
+shuffled.forEach(char=>{
+  let span=document.createElement("span");
+  span.className="letter";
+  span.innerText=char;
+  span.onclick=function(){
+    selected.push(char);
+    span.style.visibility="hidden";
+  }
+  container.appendChild(span);
+});
+
+window.checkSentence=function(){
+  if(selected.join("")===sentence){
+    document.getElementById("gameMsg").innerHTML="ممتاز 💖";
+    setTimeout(()=>{goTo(4); startCountdown();},1000);
+  }else{
+    document.getElementById("gameMsg").innerHTML="جربي مرة تانية 😅";
+  }
+}
+
+/* العد */
 function startCountdown(){
   let time=5;
   let timer=document.getElementById("timer");
   timer.innerHTML=time;
-
   let interval=setInterval(()=>{
     time--;
     timer.innerHTML=time;
     if(time<=0){
       clearInterval(interval);
-      nextPage("surprise");
+      goTo(5);
     }
   },1000);
 }
 
-/* قلوب */
-function createHeart(){
-  let heart=document.createElement("span");
-  heart.innerHTML="💖";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(3+Math.random()*5)+"s";
-  document.querySelector(".hearts").appendChild(heart);
-  setTimeout(()=>heart.remove(),8000);
-}
-setInterval(createHeart,300);
-
-/* Confetti */
+/* confetti */
 window.launchConfetti=function(){
-  for(let i=0;i<80;i++){
+  for(let i=0;i<60;i++){
     let c=document.createElement("span");
     c.style.left=Math.random()*100+"vw";
     c.style.background="hsl("+Math.random()*360+",100%,70%)";
