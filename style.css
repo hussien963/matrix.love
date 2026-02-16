@@ -1,15 +1,20 @@
+/* ===== إعدادات عامة ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #0f0f1a, #1a0033);
   color: #ffffff;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
 }
 
+/* ===== الشاشات ===== */
 .screen {
   display: none;
   width: 100%;
@@ -21,71 +26,80 @@ body {
   display: flex;
 }
 
+/* ===== الكارد ===== */
 .card {
-  background: rgba(30, 0, 60, 0.9);
-  padding: 40px;
+  background-color: #1e003c;
+  padding: 35px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 0 30px #9900ff;
   width: 90%;
   max-width: 400px;
+  box-shadow: 0 0 25px rgba(153, 0, 255, 0.7);
 }
 
+/* ===== العناوين ===== */
 h1, h2 {
+  margin: 0 0 20px 0;
   color: #ffffff;
 }
 
+/* ===== الأزرار ===== */
 button {
   margin-top: 15px;
   padding: 10px 25px;
   border: none;
   border-radius: 25px;
-  background: #9900ff;
-  color: white;
+  background-color: #9900ff;
+  color: #ffffff;
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  background: #cc00ff;
+  background-color: #cc00ff;
 }
 
+/* ===== الإدخال ===== */
 input {
+  margin-top: 10px;
   padding: 10px;
   font-size: 18px;
   text-align: center;
+  width: 80%;
   border-radius: 10px;
   border: none;
-  margin-top: 15px;
-  width: 80%;
-  background: #2d004d;
-  color: white;
+  background-color: #2d004d;
+  color: #ffffff;
 }
 
+/* ===== الرسائل ===== */
 #message {
-  margin-top: 10px;
+  margin-top: 15px;
   font-weight: bold;
   color: #ff66ff;
 }
 
+/* ===== قلوب الصفحة الأخيرة ===== */
 .final {
   position: relative;
   overflow: hidden;
 }
 
-.hearts::before {
-  content: "💜 💖 💜 💖 💜 💖";
+.hearts {
   position: absolute;
-  top: 100%;
-  left: 0;
+  bottom: -40px;
   width: 100%;
   text-align: center;
-  font-size: 30px;
-  animation: float 6s linear infinite;
+  font-size: 28px;
+  animation: floatUp 6s linear infinite;
 }
 
-@keyframes float {
-  from { top: 100%; }
-  to { top: -20%; }
+@keyframes floatUp {
+  from {
+    bottom: -40px;
+  }
+  to {
+    bottom: 110%;
+  }
 }
