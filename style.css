@@ -1,21 +1,20 @@
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
+  font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#ff6fa5,#ff99cc);
   color:white;
   text-align:center;
   overflow:hidden;
 }
 
-/* قلوب ثابتة 3D */
-.bg-hearts{
+.hearts-bg{
   position:fixed;
   width:100%;
-  height:100%;
-  background-image:url('https://i.imgur.com/9QZ7K5Z.png');
-  background-size:150px;
-  opacity:0.15;
+  top:20%;
+  font-size:40px;
+  opacity:0.08;
   z-index:-1;
+  line-height:80px;
 }
 
 .page{
@@ -27,20 +26,18 @@ body{
   justify-content:center;
   align-items:center;
   opacity:0;
-  transition:0.7s;
-  padding:20px;
-  box-sizing:border-box;
+  transition:0.5s;
 }
 
 .page.active{
   opacity:1;
-  z-index:2;
+  z-index:1;
 }
 
 button{
-  padding:12px 30px;
+  padding:12px 25px;
   border:none;
-  border-radius:30px;
+  border-radius:25px;
   background:white;
   color:#ff4f8b;
   font-weight:bold;
@@ -49,57 +46,41 @@ button{
 }
 
 input{
-  padding:10px;
-  border-radius:20px;
+  padding:8px;
+  border-radius:15px;
   border:none;
-  text-align:center;
   margin-top:15px;
+  text-align:center;
 }
 
 #letters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  justify-content:center;
-  margin:20px 0;
+  margin:20px;
 }
 
 .letter{
+  display:inline-block;
   background:white;
   color:#ff4f8b;
-  padding:10px;
-  border-radius:8px;
+  padding:8px;
+  margin:3px;
+  border-radius:6px;
   cursor:pointer;
 }
 
 #timer{
   font-size:60px;
   font-weight:bold;
-  margin-top:20px;
-}
-
-.glow{
-  box-shadow:0 0 20px white;
 }
 
 .cinematic{
   background:black;
+  font-size:28px;
 }
 
-.cinema-text{
-  animation:fadeIn 3s forwards;
-  opacity:0;
-}
-
-@keyframes fadeIn{
-  to{opacity:1;}
-}
-
-/* confetti */
 #confetti span{
   position:absolute;
-  width:8px;
-  height:8px;
+  width:6px;
+  height:6px;
   animation:fall 2s linear forwards;
 }
 
