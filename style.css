@@ -1,45 +1,50 @@
 body {
   margin: 0;
-  font-family: 'Cairo', sans-serif;
-  background: linear-gradient(135deg, #ff9acb, #ff6fa5);
-  color: white;
-  text-align: center;
+  font-family: 'Poppins', sans-serif;
   overflow: hidden;
+  background: linear-gradient(135deg, #ff6fa5, #ffb6d9);
+  color: white;
+}
+
+/* سلايدر */
+.slider {
+  display: flex;
+  width: 300%;
+  transition: transform 0.8s ease-in-out;
 }
 
 .page {
-  display: none;
+  width: 100%;
   min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-
-.page.active {
-  display: flex;
-  animation: fade 0.5s ease-in-out;
+  padding: 20px;
+  text-align: center;
 }
 
 h1, h2 {
-  font-size: 28px;
+  font-size: 26px;
+  text-shadow: 0 0 15px rgba(255,255,255,0.8);
 }
 
 button {
-  padding: 12px 25px;
+  padding: 12px 28px;
   border: none;
   border-radius: 30px;
   background: white;
   color: #ff4f8b;
-  font-size: 16px;
-  cursor: pointer;
+  font-weight: bold;
   margin-top: 20px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px white;
 }
 
 input {
@@ -47,43 +52,61 @@ input {
   border-radius: 20px;
   border: none;
   text-align: center;
-  font-size: 16px;
   margin-top: 15px;
-  width: 200px;
 }
 
+/* الحروف */
 .letters {
   display: flex;
-  gap: 8px;
-  margin: 20px 0;
   flex-wrap: wrap;
+  gap: 10px;
   justify-content: center;
+  margin: 20px 0;
 }
 
 .letter {
   background: white;
   color: #ff4f8b;
   padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: 12px;
   cursor: grab;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-@keyframes fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* رسالة النهاية */
+.success {
+  font-size: 28px;
+  font-weight: bold;
+  animation: glow 1s infinite alternate;
 }
 
-/* قلوب متحركة */
-.hearts::before {
-  content: "💖 💕 💗 💓 💞 💘";
+@keyframes glow {
+  from { text-shadow: 0 0 10px white; }
+  to { text-shadow: 0 0 25px #ff007f; }
+}
+
+/* قلوب 3D */
+.hearts-container span {
   position: absolute;
-  width: 100%;
-  font-size: 30px;
-  animation: float 10s linear infinite;
+  font-size: 20px;
+  animation: floatUp linear infinite;
 }
 
-@keyframes float {
-  0% { transform: translateY(-50px); }
-  100% { transform: translateY(100vh); }
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(1); opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* Confetti */
+.confetti span {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  animation: confettiFall 2s linear forwards;
+}
+
+@keyframes confettiFall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(100vh); }
 }
