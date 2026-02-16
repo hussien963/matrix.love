@@ -55,4 +55,3 @@ function checkSentence() {
     document.getElementById("result").innerHTML =
       "لسا مش صح 😅 جربي مرة تانية";
   }
-}
