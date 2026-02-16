@@ -1,112 +1,118 @@
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  background: linear-gradient(135deg, #ff6fa5, #ffb6d9);
-  color: white;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ff4f8b,#ff99cc);
+  overflow:hidden;
+  color:white;
+  text-align:center;
 }
 
-/* سلايدر */
-.slider {
-  display: flex;
-  width: 300%;
-  transition: transform 0.8s ease-in-out;
+.page{
+  position:absolute;
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transition:1s;
 }
 
-.page {
-  width: 100%;
-  min-height: 100vh;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  text-align: center;
+.page.active{
+  opacity:1;
+  z-index:2;
 }
 
-h1, h2 {
-  font-size: 26px;
-  text-shadow: 0 0 15px rgba(255,255,255,0.8);
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:32px;
 }
 
-button {
-  padding: 12px 28px;
-  border: none;
-  border-radius: 30px;
-  background: white;
-  color: #ff4f8b;
-  font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+button{
+  padding:14px 30px;
+  border:none;
+  border-radius:40px;
+  background:white;
+  color:#ff4f8b;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:20px;
+  transition:0.3s;
 }
 
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px white;
+button:hover{
+  transform:scale(1.1);
 }
 
-input {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  text-align: center;
-  margin-top: 15px;
+#timer{
+  font-size:60px;
+  font-weight:bold;
+  margin-top:20px;
+  animation:pulse 1s infinite;
 }
 
-/* الحروف */
-.letters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin: 20px 0;
+@keyframes pulse{
+  0%{ transform:scale(1); }
+  50%{ transform:scale(1.2); }
+  100%{ transform:scale(1); }
 }
 
-.letter {
-  background: white;
-  color: #ff4f8b;
-  padding: 12px;
-  border-radius: 12px;
-  cursor: grab;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+/* زر المفاجأة المتوهج */
+.glow-btn{
+  box-shadow:0 0 20px white;
+  animation:glow 1s infinite alternate;
 }
 
-/* رسالة النهاية */
-.success {
-  font-size: 28px;
-  font-weight: bold;
-  animation: glow 1s infinite alternate;
+@keyframes glow{
+  from{ box-shadow:0 0 10px white; }
+  to{ box-shadow:0 0 30px #fff; }
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px white; }
-  to { text-shadow: 0 0 25px #ff007f; }
+/* Cinematic */
+.cinematic{
+  background:black;
+  color:white;
 }
 
-/* قلوب 3D */
-.hearts-container span {
-  position: absolute;
-  font-size: 20px;
-  animation: floatUp linear infinite;
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle,transparent 40%,black 90%);
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(100vh) scale(1); opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+.cinema-text{
+  position:relative;
+  animation:fadeIn 3s forwards;
+  opacity:0;
 }
 
-/* Confetti */
-.confetti span {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: white;
-  animation: confettiFall 2s linear forwards;
+@keyframes fadeIn{
+  to{ opacity:1; }
 }
 
-@keyframes confettiFall {
-  from { transform: translateY(-10vh); }
-  to { transform: translateY(100vh); }
+/* قلوب */
+.hearts span{
+  position:absolute;
+  font-size:18px;
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  0%{ transform:translateY(100vh); opacity:1; }
+  100%{ transform:translateY(-10vh); opacity:0; }
+}
+
+/* confetti */
+#confetti span{
+  position:absolute;
+  width:8px;
+  height:8px;
+  animation:fall 2s linear forwards;
+}
+
+@keyframes fall{
+  from{ transform:translateY(-10vh); }
+  to{ transform:translateY(100vh); }
 }
