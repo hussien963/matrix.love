@@ -1,54 +1,42 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love Surprise</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>لعبة المفاجأة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- Intro Screen -->
-<section id="intro" class="screen active">
-  <div class="center-box">
-    <h1 class="glow-title">مرحباً بكِ في تجربة مختلفة</h1>
-    <button id="startBtn" class="neon-btn">ابدئي الرحلة</button>
-  </div>
-</section>
-
-<!-- Puzzle Screen -->
-<section id="puzzle" class="screen">
-  <div class="center-box">
-    <!-- المرحلة 1 -->
-    <div id="stage1">
-      <h2>شو نسبة حبك لحسين؟ 😏</h2>
-      <input type="number" id="loveInput" placeholder="اكتبي النسبة %" />
-      <button onclick="checkLove()">تحقق</button>
-      <p id="loveError" class="error"></p>
-    </div>
-
-    <!-- المرحلة 2 -->
-    <div id="stage2" style="display:none;">
-      <h2>حلّي السودوكو السهلة 🧠</h2>
-      <div id="sudoku"></div>
-      <button onclick="checkSudoku()">تحقق</button>
-      <p id="sudokuError" class="error"></p>
+  <!-- الصفحة الأولى -->
+  <div class="screen active" id="startScreen">
+    <div class="card">
+      <h1>🎮 لعبة صغيرة قبل المفاجأة</h1>
+      <button onclick="startGame()">ابدأ</button>
     </div>
   </div>
-</section>
 
-<!-- Final Screen -->
-<section id="final" class="screen">
-  <div id="heart3d"></div>
-  <div class="center-box final-box">
-    <h1 id="poem"></h1>
-    <div id="counter"></div>
-    <button id="revealBtn" class="neon-btn">Reveal 💜</button>
+  <!-- صفحة اللعبة -->
+  <div class="screen" id="gameScreen">
+    <div class="card">
+      <h2>خمن رقم من 1 إلى 10</h2>
+      <input type="number" id="guessInput" min="1" max="10">
+      <button onclick="checkGuess()">تحقق</button>
+      <p id="message"></p>
+    </div>
   </div>
-</section>
 
-<script src="script.js"></script>
+  <!-- الصفحة النهائية -->
+  <div class="screen" id="finalScreen">
+    <div class="card final">
+      <h1>
+        💜 مبروك وصلتي للمفاجأة 💜  
+        وجودك بحياتي أجمل شي صار معي ✨
+      </h1>
+      <div class="hearts"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
