@@ -10,7 +10,7 @@ body{
   margin:0;
   font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#ff6fa5,#ff99cc);
-  color:white;
+  color:black; /* لون الخط أسود */
   text-align:center;
   overflow:hidden;
   position:relative;
@@ -72,6 +72,7 @@ input{
   border:none;
   text-align:center;
   margin-top:15px;
+  color:black;
 }
 
 /* لعبة الحروف */
@@ -113,6 +114,7 @@ input{
 /* الصفحة النهائية Cinematic */
 .cinematic{
   background:black;
+  color:white;
   font-size:28px;
 }
 
@@ -174,6 +176,7 @@ input{
   <div id="letters"></div>
   <button onclick="checkSentence()">تأكيد</button>
   <p id="gameMsg"></p>
+  <button id="retryBtn" style="display:none;margin-top:15px;" onclick="retryGame()">إعادة المحاولة 🔄</button>
 </section>
 
 <!-- الصفحة 4: عد تنازلي -->
@@ -221,16 +224,24 @@ let container = document.getElementById("letters");
 let shuffled = sentence.split("").sort(()=>0.5-Math.random());
 let selected = [];
 
-shuffled.forEach(char=>{
-  let span = document.createElement("span");
-  span.className="letter";
-  span.innerText=char;
-  span.onclick=function(){
-    selected.push(char);
-    span.style.visibility="hidden";
-  }
-  container.appendChild(span);
-});
+function renderLetters(){
+  container.innerHTML = "";
+  shuffled.forEach(char=>{
+    let span = document.createElement("span");
+    span.className="letter";
+    span.innerText=char;
+    span.onclick=function(){
+      selected.push(char);
+      span.style.visibility="hidden";
+    }
+    container.appendChild(span);
+  });
+  selected = [];
+  document.getElementById("gameMsg").innerHTML="";
+  document.getElementById("retryBtn").style.display="none";
+}
+
+renderLetters();
 
 window.checkSentence = function(){
   if(selected.join("") === sentence){
@@ -238,7 +249,13 @@ window.checkSentence = function(){
     setTimeout(()=>{ goTo(4); startCountdown(); },1000);
   }else{
     document.getElementById("gameMsg").innerHTML="جربي مرة تانية 😅";
+    document.getElementById("retryBtn").style.display="inline-block";
   }
+}
+
+/* إعادة المحاولة */
+window.retryGame = function(){
+  renderLetters();
 }
 
 /* عد تنازلي */
