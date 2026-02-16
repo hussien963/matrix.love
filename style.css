@@ -1,77 +1,91 @@
-/* ===== BODY ===== */
 body {
   margin: 0;
-  font-family: 'Cairo', sans-serif;
-  background: linear-gradient(135deg, #1a0033, #330066);
-  color: #ffffff; /* النصوص بيضاء واضحة */
-  overflow: hidden;
-  text-shadow: 0 0 6px #ff66ff;
-}
-
-/* ===== SCREEN ===== */
-.screen {
-  position: absolute;
-  inset: 0;
-  display: none;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0f1a, #1a0033);
+  color: #ffffff;
+  display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .screen.active {
   display: flex;
 }
 
-/* ===== CENTER BOX ===== */
-.center-box {
-  background: rgba(50, 0, 80, 0.7); /* داكنة ومشفافة */
+.card {
+  background: rgba(30, 0, 60, 0.9);
   padding: 40px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 40px rgba(180, 0, 255, 0.7);
+  text-align: center;
+  box-shadow: 0 0 30px #9900ff;
+  width: 90%;
+  max-width: 400px;
 }
 
-/* ===== TITLES ===== */
-.glow-title {
-  font-size: 40px;
-  text-shadow: 0 0 20px #ff66ff, 0 0 40px #b366ff;
+h1, h2 {
   color: #ffffff;
 }
 
-/* ===== BUTTONS ===== */
-.neon-btn {
-  margin-top: 20px;
-  padding: 12px 30px;
-  font-size: 20px;
+button {
+  margin-top: 15px;
+  padding: 10px 25px;
   border: none;
-  border-radius: 30px;
-  background: #6a00ff;
-  color: #ffffff;
+  border-radius: 25px;
+  background: #9900ff;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 0 20px #ff66ff;
   transition: 0.3s;
 }
 
-.neon-btn:hover {
-  box-shadow: 0 0 30px #ff66ff, 0 0 50px #b366ff;
+button:hover {
+  background: #cc00ff;
 }
 
-/* ===== INPUTS ===== */
 input {
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
+  text-align: center;
   border-radius: 10px;
   border: none;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.15); /* أوضح */
-  color: #ffffff; /* النصوص واضحة */
+  margin-top: 15px;
+  width: 80%;
+  background: #2d004d;
+  color: white;
 }
 
-/* ===== ERRORS ===== */
-.error {
-  color: #ff4da6;
+#message {
   margin-top: 10px;
   font-weight: bold;
+  color: #ff66ff;
 }
 
-/* ===== SUDOKU 9x9 ===== */
+.final {
+  position: relative;
+  overflow: hidden;
+}
+
+.hearts::before {
+  content: "💜 💖 💜 💖 💜 💖";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { top: 100%; }
+  to { top: -20%; }
+}
