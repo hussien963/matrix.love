@@ -5,39 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For RARA 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="hearts"></div>
+<div class="bg-hearts"></div>
 <div id="confetti"></div>
 
 <!-- الصفحة 1 -->
-<section class="page active" id="welcome">
+<section class="page active" id="page1">
   <h1>اهلاً بكم في عالم رارا 🤗</h1>
-  <button onclick="nextPage('countdown')">ابدأ الرحلة 💕</button>
+  <button onclick="goTo(2)">التالي 💕</button>
 </section>
 
-<!-- الصفحة 2 (العد التنازلي) -->
-<section class="page" id="countdown">
+<!-- الصفحة 2 -->
+<section class="page" id="page2">
+  <h2>شو نسبة حبك لحسين؟ 💗</h2>
+  <input type="number" id="loveInput" placeholder="اكتبي النسبة %">
+  <button onclick="checkLove()">تأكيد</button>
+  <p id="loveMsg"></p>
+</section>
+
+<!-- الصفحة 3 (اللعبة) -->
+<section class="page" id="page3">
+  <h2>رتبي الحروف لتصير الجملة الصح 💘</h2>
+  <div id="letters"></div>
+  <button onclick="checkSentence()">تأكيد</button>
+  <p id="gameMsg"></p>
+</section>
+
+<!-- الصفحة 4 (العد) -->
+<section class="page" id="page4">
   <h2>في مفاجأة بعد العد التنازلي ⏳</h2>
-  <div id="timer">05</div>
+  <div id="timer">5</div>
 </section>
 
-<!-- الصفحة 3 (زر المفاجأة) -->
-<section class="page" id="surprise">
-  <h2>جاهزة للمفاجأة؟ 🎁</h2>
-  <button class="glow-btn" onclick="nextPage('cinematic'); launchConfetti();">
-    افتحي المفاجأة 💖
-  </button>
+<!-- الصفحة 5 (زر المفاجأة) -->
+<section class="page" id="page5">
+  <h2>جاهزة؟ 🎁</h2>
+  <button class="glow" onclick="goTo(6); launchConfetti();">افتحي المفاجأة 💖</button>
 </section>
 
-<!-- الصفحة الأخيرة Cinematic -->
-<section class="page cinematic" id="cinematic">
-  <div class="overlay"></div>
+<!-- الصفحة الأخيرة -->
+<section class="page cinematic" id="page6">
   <div class="cinema-text">
-    <h1>I LOVE YOU, RARA 💖</h1>
+    <h1>I LOVE YOU, RARA 💍💖</h1>
     <p>Will you stay with me forever? ✨</p>
   </div>
 </section>
