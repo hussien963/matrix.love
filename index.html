@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RARA 💖</title>
 <style>
-/* ثيم زهري وخلفية */
+/* ثيم زهري منتظم */
 body{
   margin:0;
   font-family:Arial, sans-serif;
@@ -13,17 +13,26 @@ body{
   color:white;
   text-align:center;
   overflow:hidden;
+  position:relative;
 }
 
-/* قلوب ثابتة 3D */
+/* شبكة القلوب الثابتة */
 .hearts-bg{
   position:fixed;
   width:100%;
-  top:20%;
-  font-size:40px;
-  opacity:0.08;
+  height:100%;
+  display:grid;
+  grid-template-columns:repeat(10, 1fr);
+  grid-template-rows:repeat(15, 1fr);
   z-index:-1;
-  line-height:80px;
+  opacity:0.15;
+}
+
+.hearts-bg span{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
 }
 
 /* الصفحات */
@@ -123,7 +132,26 @@ input{
 </head>
 <body>
 
-<div class="hearts-bg">💖 💗 💕 💓 💞 💘 💖 💗 💕 💓 💞 💘</div>
+<!-- شبكة القلوب -->
+<div class="hearts-bg">
+  <span>💖</span><span>💗</span><span>💕</span><span>💓</span><span>💞</span>
+  <span>💘</span><span>💖</span><span>💗</span><span>💕</span><span>💓</span>
+  <span>💞</span><span>💘</span><span>💖</span><span>💗</span><span>💕</span>
+  <span>💓</span><span>💞</span><span>💘</span><span>💖</span><span>💗</span>
+  <span>💕</span><span>💓</span><span>💞</span><span>💘</span><span>💖</span>
+  <span>💗</span><span>💕</span><span>💓</span><span>💞</span><span>💘</span>
+  <span>💖</span><span>💗</span><span>💕</span><span>💓</span><span>💞</span>
+  <span>💘</span><span>💖</span><span>💗</span><span>💕</span><span>💓</span>
+  <span>💞</span><span>💘</span><span>💖</span><span>💗</span><span>💕</span>
+  <span>💓</span><span>💞</span><span>💘</span><span>💖</span><span>💗</span>
+  <span>💕</span><span>💓</span><span>💞</span><span>💘</span><span>💖</span>
+  <span>💗</span><span>💕</span><span>💓</span><span>💞</span><span>💘</span>
+  <span>💖</span><span>💗</span><span>💕</span><span>💓</span><span>💞</span>
+  <span>💘</span><span>💖</span><span>💗</span><span>💕</span><span>💓</span>
+  <span>💞</span><span>💘</span><span>💖</span><span>💗</span><span>💕</span>
+  <span>💓</span><span>💞</span><span>💘</span><span>💖</span><span>💗</span>
+</div>
+
 <div id="confetti"></div>
 
 <!-- الصفحة 1 -->
