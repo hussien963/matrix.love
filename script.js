@@ -1,30 +1,29 @@
-window.onload=function(){
+window.onload = function(){
 
-window.goTo=function(num){
+window.goTo = function(num){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById("page"+num).classList.add("active");
 }
 
-window.checkLove=function(){
-  let val=document.getElementById("loveInput").value;
-  let msg=document.getElementById("loveMsg");
+window.checkLove = function(){
+  let val = document.getElementById("loveInput").value;
+  let msg = document.getElementById("loveMsg");
 
-  if(val==99 || val==100){
-    msg.innerHTML="صح 😍";
+  if(val == 99 || val == 100){
+    msg.innerHTML = "صح 😍";
     setTimeout(()=>goTo(3),800);
   }else{
-    msg.innerHTML="فكري مرة تانية 🤨";
+    msg.innerHTML = "فكري مرة تانية 🤨";
   }
 }
 
-/* لعبة ترتيب بدون drag (مناسبة للموبايل) */
-let sentence="I LOVE HUSSIEN";
-let container=document.getElementById("letters");
-let shuffled=sentence.split("").sort(()=>0.5-Math.random());
-let selected=[];
+let sentence = "I LOVE HUSSIEN";
+let container = document.getElementById("letters");
+let shuffled = sentence.split("").sort(()=>0.5-Math.random());
+let selected = [];
 
 shuffled.forEach(char=>{
-  let span=document.createElement("span");
+  let span = document.createElement("span");
   span.className="letter";
   span.innerText=char;
   span.onclick=function(){
@@ -34,16 +33,15 @@ shuffled.forEach(char=>{
   container.appendChild(span);
 });
 
-window.checkSentence=function(){
-  if(selected.join("")===sentence){
+window.checkSentence = function(){
+  if(selected.join("") === sentence){
     document.getElementById("gameMsg").innerHTML="ممتاز 💖";
-    setTimeout(()=>{goTo(4); startCountdown();},1000);
+    setTimeout(()=>{ goTo(4); startCountdown(); },1000);
   }else{
     document.getElementById("gameMsg").innerHTML="جربي مرة تانية 😅";
   }
 }
 
-/* العد */
 function startCountdown(){
   let time=5;
   let timer=document.getElementById("timer");
@@ -58,9 +56,8 @@ function startCountdown(){
   },1000);
 }
 
-/* confetti */
 window.launchConfetti=function(){
-  for(let i=0;i<60;i++){
+  for(let i=0;i<50;i++){
     let c=document.createElement("span");
     c.style.left=Math.random()*100+"vw";
     c.style.background="hsl("+Math.random()*360+",100%,70%)";
