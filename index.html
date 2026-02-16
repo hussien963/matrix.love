@@ -2,41 +2,36 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>لعبة المفاجأة</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RARA 💖</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- الصفحة الأولى -->
-  <div class="screen active" id="startScreen">
-    <div class="card">
-      <h1>🎮 لعبة صغيرة قبل المفاجأة</h1>
-      <button onclick="startGame()">ابدأ</button>
-    </div>
-  </div>
+<div class="hearts"></div>
 
-  <!-- صفحة اللعبة -->
-  <div class="screen" id="gameScreen">
-    <div class="card">
-      <h2>خمن رقم من 1 إلى 10</h2>
-      <input type="number" id="guessInput" min="1" max="10">
-      <button onclick="checkGuess()">تحقق</button>
-      <p id="message"></p>
-    </div>
-  </div>
+<!-- الصفحة الأولى -->
+<section id="page1" class="page active">
+  <h1>اهلاً بكم في عالم رارا 🤗</h1>
+  <button onclick="nextPage(2)">التالي 💕</button>
+</section>
 
-  <!-- الصفحة النهائية -->
-  <div class="screen" id="finalScreen">
-    <div class="card final">
-      <h1>
-        💜 مبروك وصلتي للمفاجأة 💜  
-        وجودك بحياتي أجمل شي صار معي ✨
-      </h1>
-      <div class="hearts"></div>
-    </div>
-  </div>
+<!-- الصفحة الثانية -->
+<section id="page2" class="page">
+  <h2>شو نسبة حبك لحسين؟ 💗</h2>
+  <input type="number" id="lovePercent" placeholder="اكتبي النسبة %">
+  <button onclick="checkLove()">تأكيد</button>
+  <p id="loveMessage"></p>
+</section>
 
-  <script src="script.js"></script>
+<!-- الصفحة الثالثة -->
+<section id="page3" class="page">
+  <h2>رتبي الحروف لتصير الجملة الصح 💘</h2>
+  <div id="letters" class="letters"></div>
+  <button onclick="checkSentence()">تأكيد الترتيب</button>
+  <p id="result"></p>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
